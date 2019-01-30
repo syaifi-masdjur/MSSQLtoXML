@@ -1,0 +1,16 @@
+﻿<Controls:MetroWindow x:Class="MSSQLDBtoXML.LoadingBar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:loader="clr-namespace:MSSQLDBtoXML.Controls"
+        mc:Ignorable="d"
+        Title="Processing..." 
+        Height="84.666" Width="525"
+        d:DesignWidth="1477.5"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsCloseButtonEnabled="False" IsMinButtonEnabled="False" IsMaxRestoreButtonEnabled="False" IsWindowDraggable="False" ShowCloseButton="False" ShowMinButton="False" ShowSystemMenuOnRightClick="False">
+    <StackPanel>
+        <TextBlock VerticalAlignment="Center" Grid.Row="0" Text="{Binding StatusMessages}" HorizontalAlignment="Center" Margin="10"/>
+    </StackPanel>
+</Controls:MetroWindow>

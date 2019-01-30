@@ -24,7 +24,7 @@
             <Label Width="100">User Name</Label>
             <TextBox Width="150" Text="{Binding UserName}"/>
             <Label Width="100">Password</Label>
-            <TextBox Width="150" Text="{Binding Password}"/>
+            <PasswordBox Width="150" x:Name="txtPassword" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="3">
             <Label Width="100">File Name</Label>
@@ -32,8 +32,8 @@
             <Button Width="48" Command="{Binding BrowseCommand}" >...</Button>
         </StackPanel>
         <StackPanel Height="30"  Orientation="Horizontal" Margin="10" HorizontalAlignment="Right" >
-            <Button Width="75" Margin="0 0 5 0" Command="{Binding TestCommand}" >Test</Button>
-            <Button Width="75" Margin="0 0 5 0" Command="{Binding ExecuteCommand}" >Transfer</Button>
+            <Button Width="75" Margin="0 0 5 0" Command="{Binding TestCommand}" CommandParameter="{Binding ElementName=txtPassword}" >Test</Button>
+            <Button Width="75" Margin="0 0 5 0" Command="{Binding ExecuteCommand}" CommandParameter="{Binding ElementName=txtPassword}" >Transfer</Button>
             <Button Width="75"  Margin="10 0 5 0" Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">Close</Button>
         </StackPanel>
     </StackPanel>

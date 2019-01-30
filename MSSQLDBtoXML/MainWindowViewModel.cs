@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MSSQLDBtoXML
@@ -37,7 +39,6 @@ namespace MSSQLDBtoXML
             Host = @"";
             Database = ""; 
             UserName = "";
-            Password = "";
             FileName = "";
 
             CloseCommand = new RelayCommand(isExecute, Close);
@@ -48,16 +49,31 @@ namespace MSSQLDBtoXML
 
         private void TestConnection(object obj)
         {
+            var pwd = obj as PasswordBox;
+            Password = pwd.Password;
+
+            if (isConnected())
+            {
+                MessageBox.Show("Connection success");
+            }
+            else
+            {
+                MessageBox.Show("Connection failed, please try again");
+            }
+        }
+
+        private bool isConnected()
+        {
             string cns = $"Data Source={Host};Initial Catalog={Database};User id={UserName};Password={Password};";
             SqlConnection cn = new SqlConnection(cns);
             try
             {
                 cn.Open();
-                MessageBox.Show("Connection success");
+                return true;
             }
             catch
             {
-                MessageBox.Show("Connection failed, please try again");
+                return false;
             }
             finally
             {
@@ -65,9 +81,23 @@ namespace MSSQLDBtoXML
             }
         }
 
-
         private async void Execute(object obj)
         {
+
+            var pwd = obj as PasswordBox;
+            Password = pwd.Password;
+            if (Password.Length == 0)
+            {
+                MessageBox.Show("Please Put Password");
+                return;
+            }
+            //testing dolo..
+            if (!isConnected())
+            {
+                MessageBox.Show("Connection failed, please try again");
+                return;
+            }
+
             LoadingBar wnd = new LoadingBar();
             loaderMsg = new LoaderViewModel();
             wnd.DataContext = loaderMsg;
@@ -133,7 +163,9 @@ namespace MSSQLDBtoXML
         private bool isExecuteable(object obj)
         {
 
-            bool   hasil = (Host.Length != 0) && (Database.Length != 0) && (UserName.Length != 0) && (Password.Length != 0) && (FileName.Length != 0);
+            //String plainStr = new System.Net.NetworkCredential(string.Empty, Password).Password;
+
+            bool   hasil = (Host.Length != 0) && (Database.Length != 0) && (UserName.Length != 0) && (FileName.Length != 0);
             return hasil;
         }
 

@@ -34,10 +34,10 @@ namespace MSSQLDBtoXML
         private LoaderViewModel loaderMsg;
         public MainWindowViewModel()
         {
-            Host = @"www2.aplikasikilat.com,3333\SQLEXPRESS";
-            Database = "SmartSiz-v3-Master"; 
-            UserName = "escurity-user";
-            Password = "newP@ssw0rd";
+            Host = @"";
+            Database = ""; 
+            UserName = "";
+            Password = "";
             FileName = "";
 
             CloseCommand = new RelayCommand(isExecute, Close);
